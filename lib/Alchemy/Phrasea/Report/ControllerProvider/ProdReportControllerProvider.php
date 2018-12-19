@@ -60,44 +60,27 @@ class ProdReportControllerProvider implements ControllerProviderInterface, Servi
         $controllers = $this->createAuthenticatedCollection($app);
         
         $controllers
-            ->match('/connections/{sbasId}/', 'controller.prod.report:connectionsAction')
+            ->get('/', 'controller.prod.report:indexAction')
+        ;
+
+        $controllers
+            ->get('/connections/{sbasId}/', 'controller.prod.report:connectionsAction')
             ->assert('sbasId', '\d+')
             ->bind('report2_connections')
-            ->method('GET|POST')
         ;
 
         $controllers
-            ->match('/downloads/{sbasId}/', 'controller.prod.report:downloadsAction')
+            ->get('/downloads/{sbasId}/', 'controller.prod.report:downloadsAction')
             ->assert('sbasId', '\d+')
             ->bind('report2_downloads')
-            ->method('GET|POST')
         ;
 
         $controllers
-            ->match('/records/{sbasId}/', 'controller.prod.report:recordsAction')
+            ->get('/records/{sbasId}/', 'controller.prod.report:recordsAction')
             ->assert('sbasId', '\d+')
             ->bind('report2_records')
-            ->method('GET|POST')
         ;
 
         return $controllers;
     }
 }
-
-        // $controllers
-        //     ->match('/connections/{sbasId}/', 'controller.prod.report:connectionsAction')
-        //     ->assert('sbasId', '\d+')
-        //     ->method('GET|POST')
-        // ;
-
-        // $controllers
-        //     ->match('/downloads/{sbasId}/', 'controller.prod.report:downloadsAction')
-        //     ->assert('sbasId', '\d+')
-        //     ->method('GET|POST')
-        // ;
-
-        // $controllers
-        //     ->match('/records/{sbasId}/', 'controller.prod.report:recordsAction')
-        //     ->assert('sbasId', '\d+')
-        //     ->method('GET|POST')
-        // ;
